@@ -1,6 +1,7 @@
 import {injectable} from "inversify";
 import IPlane from "@/lib/Interfaces/IPlane";
 import IPerson from "@/lib/Interfaces/IPerson";
+import "reflect-metadata";
 
 @injectable()
 export default class Plane implements IPlane {

@@ -48,11 +48,16 @@
         flightDays: IFlightDay[] = [];
 
         created() {
+            this.updateDays();
+        }
+
+        updateDays(){
             this.flightDays = FlightDayControllerDI.getAllFlightDays();
         }
 
         add(){
-
+            FlightDayControllerDI.addFlightDay(new Date());
+            this.updateDays();
         }
     }
 </script>

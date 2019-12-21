@@ -5,7 +5,7 @@
                     @back="back"
                     @save="save"
             >
-                <template v-slot:f-headline>Editace uživatele</template>
+                <template v-slot:f-headline>Přidání uživatele</template>
                 <template v-slot:f-body>
                     <v-text-field
                             v-model="person.name"
@@ -40,25 +40,17 @@
             Form
         }
     })
-    export default class PersonDetail extends Vue {
+    export default class PersonNew extends Vue {
         person: IPerson | null;
 
         constructor() {
             super();
-            this.person = null;
-        }
-
-        get id() {
-            return parseInt(this.$route.params.id);
-        }
-
-        created() {
-            if (this.$route.params.id !== undefined) {
-                let person = PersonControllerDI.getPerson(parseInt(this.$route.params.id));
-                if (person !== null) {
-                    this.person = person;
-                }
-            }
+            this.person = {
+                id: 0,
+                email: "",
+                name: "",
+                surname: ""
+            };
         }
 
         back() {
@@ -68,7 +60,7 @@
         save() {
             //TODO validations
             if (this.person !== null) {
-                PersonControllerDI.updatePerson(this.id, this.person.name, this.person.surname, this.person.email);
+                PersonControllerDI.addPerson(this.person.name, this.person.surname, this.person.email);
                 this.back();
             }
         }

@@ -7,6 +7,8 @@ import PersonList from "@/view/pages/person/PersonList.vue";
 import FlightDayList from "@/view/pages/flightDay/FlightDayList.vue";
 import FlightDayDetail from "@/view/pages/flightDay/FlightDayDetail.vue";
 import Home from "@/view/pages/Home.vue";
+import PlaneNew from "@/view/pages/plane/PlaneNew.vue";
+import PersonNew from "@/view/pages/person/PersonNew.vue";
 
 const routes: RouteConfig[] = [
     /**
@@ -22,6 +24,11 @@ const routes: RouteConfig[] = [
         path: '/plane/:id',
         component: PlaneDetail,
     },
+    {
+        name: "PlaneNew",
+        path: '/planenew',
+        component: PlaneNew,
+    },
 
     /**
      * Persons
@@ -35,6 +42,11 @@ const routes: RouteConfig[] = [
         name: "PersonDetail",
         path: '/person/:id',
         component: PersonDetail,
+    },
+    {
+        name: "PersonNew",
+        path: '/personnew',
+        component: PersonNew,
     },
 
     /**

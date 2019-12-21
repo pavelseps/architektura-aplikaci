@@ -51,7 +51,7 @@
         }
 
         add(){
-
+            this.$router.push({name: "PersonNew"});
         }
     }
 </script>

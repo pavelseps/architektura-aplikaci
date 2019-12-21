@@ -4,7 +4,7 @@ import IPlane from "@/lib/interfaces/IPlane";
 import IFlight from "@/lib/interfaces/IFlight";
 
 export default interface IUCFlight {
-    create(date: Date, storage: IStorages): IFlight | null
+    create(date: Date, captain: IPerson, crew: IPerson[], plane: IPlane, storage: IStorages): IFlight | null
 
     setTow(id: number, captain: IPerson, crew: IPerson[], plane: IPlane, storage: IStorages): IFlight | null
 

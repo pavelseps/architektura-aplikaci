@@ -4,8 +4,6 @@ import IFlightDay from "@/lib/interfaces/IFlightDay";
 
 export default interface IFlight {
     id: number
-    flightDay: IFlightDay
-    towPlane?: IPlane
     towPlane?: IPlane
     towCaptain?: IPerson
     towCrew?: IPerson[]

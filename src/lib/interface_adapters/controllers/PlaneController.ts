@@ -6,15 +6,16 @@ import IUCPlane from "@/lib/interfaces/UseCases/IUCPlane";
 import IStorages from "@/lib/interfaces/IStorages";
 import IPlaneController from "@/lib/interfaces/Controllers/IPlaneController";
 import "reflect-metadata";
+import {TPlaneStorage} from "@/lib/interfaces/Storages/TPlaneStorage";
 
 @injectable()
 export default class PlaneController implements IPlaneController {
 
-    private readonly _storage: IStorage<IPlane>;
+    private readonly _storage: IStorage<IPlane, TPlaneStorage>;
     private readonly _ucplane: IUCPlane;
 
     constructor(
-        @inject(TYPES.PlaneStorage) storage: IStorage<IPlane>,
+        @inject(TYPES.PlaneStorage) storage: IStorage<IPlane, TPlaneStorage>,
         @inject(TYPES.UCPlane) ucplane: IUCPlane
     ) {
 

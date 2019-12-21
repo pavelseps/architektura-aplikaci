@@ -19,10 +19,13 @@ export default class UCFlight implements IUCFlight {
         this._flightFactory = flightFactory;
     }
 
-    create(date: Date, {flightStorage}: IStorages): IFlight | null {
+    create(date: Date, captain: IPerson, crew: IPerson[], plane: IPlane, {flightStorage}: IStorages): IFlight | null {
         if (flightStorage !== undefined) {
             let flight = this._flightFactory();
             flight.date = date;
+            flight.captain = captain;
+            flight.crew = crew;
+            flight.plane = plane;
 
             return flightStorage.create(flight);
         }

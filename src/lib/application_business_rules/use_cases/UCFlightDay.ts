@@ -94,4 +94,54 @@ export default class UCFlightDay implements IUCFlightDay {
         return null;
     }
 
+    preparedFlights(id: number, {flightDayStorage}: IStorages): IFlight[] {
+        let date = this.get(id, {flightDayStorage});
+
+        if (date === null) {
+            return [];
+        }
+
+
+        return date.flights.filter(x => x.ready && x.startDate === undefined && x.finishDate === undefined);
+    }
+
+    onGroundPlanes(id: number, {flightDayStorage}: IStorages): IPlane[] {
+        let date = this.get(id, {flightDayStorage});
+
+        if (date === null) {
+            return [];
+        }
+
+        let idPlanesUsed: number[] = [];
+        for (let flight of date.flights) {
+            idPlanesUsed.push(flight.plane.id);
+            if (flight.towPlane !== undefined) {
+                idPlanesUsed.push(flight.towPlane.id);
+            }
+        }
+
+        return date.planes.filter(x => !idPlanesUsed.includes(x.id));
+    }
+
+    inAirFlights(id: number, {flightDayStorage}: IStorages): IFlight[] {
+        let date = this.get(id, {flightDayStorage});
+
+        if (date === null) {
+            return [];
+        }
+
+        return date.flights.filter(x => x.startDate !== undefined && x.finishDate === undefined);
+    }
+
+    setFlight(id: number, flight: IFlight, {flightDayStorage}: IStorages): IFlightDay | null {
+        let date = this.get(id, {flightDayStorage});
+
+        if (date === null || flightDayStorage === undefined) {
+            return null;
+        }
+        date.flights.push(flight);
+
+        return flightDayStorage.update(id, date);
+    }
+
 }

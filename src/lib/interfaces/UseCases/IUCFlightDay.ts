@@ -5,11 +5,13 @@ import IPlane from "@/lib/interfaces/IPlane";
 import IFlight from "@/lib/interfaces/IFlight";
 
 export default interface IUCFlightDay {
-    create(date : Date, storage: IStorages): IFlightDay | null
+    create(date: Date, storage: IStorages): IFlightDay | null
 
-    setPersons(id: number, persons : IPerson[], storage: IStorages): IFlightDay | null
+    setPersons(id: number, persons: IPerson[], storage: IStorages): IFlightDay | null
 
-    setPlanes(id: number, planes : IPlane[], storage: IStorages): IFlightDay | null
+    setPlanes(id: number, planes: IPlane[], storage: IStorages): IFlightDay | null
+
+    setFlight(id: number, flight: IFlight, storage: IStorages): IFlightDay | null
 
     getFlights(id: number, storage: IStorages): IFlight[]
 
@@ -18,4 +20,11 @@ export default interface IUCFlightDay {
     get(id: number, storage: IStorages): IFlightDay | null
 
     remove(id: number, storage: IStorages): void
+
+    preparedFlights(id: number, storage: IStorages): IFlight[]
+
+    onGroundPlanes(id: number, storage: IStorages): IPlane[]
+
+    inAirFlights(id: number, storage: IStorages): IFlight[]
+
 }

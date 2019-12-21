@@ -1,12 +1,38 @@
 <template>
     <div>
-        <v-combobox
-                v-model="FDplanes"
-                :items="planes"
-                label="Vyberte letadla"
-                multiple
-                chips
-        />
+        <v-container>
+            <v-row>
+                <v-col md="3" v-for="plane in planes">
+                    <v-card
+                            class="text-center"
+                            outlined
+                            :color="idSelected.includes(plane.id) ? 'green lighten-5' : ''"
+                            @click.prevent="toggle(plane.id)"
+                    >
+                        <v-card-title>{{plane.callsign}}</v-card-title>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                            @click="back"
+                    >
+                        <v-icon>mdi-arrow-left</v-icon>
+                        Zpět
+                    </v-btn>
+                </v-col>
+                <v-col class="text-right">
+                    <v-btn
+                            color="teal accent-4"
+                            @click.prevent="save"
+                    >
+                        <v-icon>mdi-content-save</v-icon>
+                        Uložit
+                    </v-btn>
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
@@ -21,13 +47,13 @@
         components: {List}
     })
     export default class FlightDayPlanes extends Vue {
-        FDplanes: IPlane[] = [];
+        idSelected: number[] = [];
         planes: IPlane[] = [];
 
         created() {
             let flightDay = FlightDayControllerDI.getFlightDay(this.id);
             if (flightDay !== null) {
-                this.FDplanes = flightDay.planes;
+                this.idSelected = flightDay.planes.map(x => x.id);
             }
 
             this.planes = PlaneControllerDI.getAllPlanes();
@@ -42,11 +68,19 @@
             });
         }
 
-        save() {
-            if (this.FDplanes !== null) {
-                FlightDayControllerDI.setPlanesToDay(this.id, this.FDplanes);
-                this.back();
+        toggle(id : number){
+            let index = this.idSelected.findIndex(x => x === id);
+
+            if (index > -1) {
+                this.idSelected.splice(index, 1);
+            } else {
+                this.idSelected.push(id);
             }
+        }
+
+        save() {
+            FlightDayControllerDI.setPlanesToDay(this.id, this.planes.filter(x => this.idSelected.includes(x.id)));
+            this.back();
         }
     }
 </script>

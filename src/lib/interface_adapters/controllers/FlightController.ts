@@ -8,14 +8,15 @@ import IFlight from "@/lib/interfaces/IFlight";
 import IUCFlight from "@/lib/interfaces/UseCases/IUCFlight";
 import IPerson from "@/lib/interfaces/IPerson";
 import IPlane from "@/lib/interfaces/IPlane";
+import {TFlightStorage} from "@/lib/interfaces/Storages/TFlightStorage";
 
 @injectable()
 export default class FlightController implements IFlightController{
-    private readonly _storage : IStorage<IFlight>;
+    private readonly _storage : IStorage<IFlight, TFlightStorage>;
     private readonly _ucflight : IUCFlight;
 
     constructor(
-        @inject(TYPES.FlightStorage) storage : IStorage<IFlight>,
+        @inject(TYPES.FlightStorage) storage : IStorage<IFlight, TFlightStorage>,
         @inject(TYPES.UCFlight) ucflight : IUCFlight
     ) {
 
@@ -30,8 +31,8 @@ export default class FlightController implements IFlightController{
         }
     }
 
-    addFlight(date : Date){
-        return this._ucflight.create(date, this.storages);
+    addFlight(date : Date, captain: IPerson, crew: IPerson[], plane: IPlane,){
+        return this._ucflight.create(date, captain, crew, plane, this.storages);
     }
 
     finishFlight(id: number, date: Date): IFlight | null {

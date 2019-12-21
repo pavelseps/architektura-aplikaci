@@ -1,7 +1,6 @@
 
 export type TFlightStorage = {
     id: number
-    flightDay_id: number
     towPlane_id?: number
     towCaptain_id?: number
     towCrew_id?: number[]

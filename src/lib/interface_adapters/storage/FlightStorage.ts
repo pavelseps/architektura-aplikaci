@@ -63,7 +63,6 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
             captain_id: data.captain.id,
             crew_id: data.crew.map(x => x.id),
             date: data.date.toString(),
-            flightDay_id: data.flightDay.id,
             plane_id: data.plane.id,
             ready: data.ready,
 
@@ -112,8 +111,6 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
         instance.ready = data.ready;
 
         //TODO remove ts-ignore :(
-        // @ts-ignore
-        instance.flightDay = this._flightDayStorage.get(data.flightDay_id);
         // @ts-ignore
         instance.captain = this._personStorage.get(data.captain_id);
         instance.crew = this._personStorage.getAll()

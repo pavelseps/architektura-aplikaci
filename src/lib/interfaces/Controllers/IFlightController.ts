@@ -4,7 +4,7 @@ import IPlane from "@/lib/interfaces/IPlane";
 
 export default interface IFlightController {
 
-    addFlight(date: Date): IFlight | null
+    addFlight(date: Date, captain: IPerson, crew: IPerson[], plane: IPlane,): IFlight | null
 
     getFlight(id: number): IFlight | null
 

@@ -1,33 +1,38 @@
 <template>
     <div>
-        <v-combobox
-                v-model="FDpersons"
-                :items="persons"
-                label="Vyberte piloty"
-                multiple
-                chips
-                return-object
-        >
-            <template v-slot:selection="data">
-                <v-chip
-                        :key="JSON.stringify(data.item)"
-                        v-bind="data.attrs"
-                        :input-value="data.selected"
-                        :disabled="data.disabled"
-                        @click:close="data.parent.selectItem(data.item)"
-                >
-                    {{data.item.name}} {{data.item.surname}}
-                </v-chip>
-            </template>
-        </v-combobox>
-
-        <v-select
-                label="broken"
-                v-model="FDpersons"
-                :items="persons"
-                tags
-                chips
-        ></v-select>
+        <v-container>
+            <v-row>
+                <v-col md="3" v-for="person in persons">
+                    <v-card
+                            class="text-center"
+                            outlined
+                            :color="idSelected.includes(person.id) ? 'green lighten-5' : ''"
+                            @click.prevent="toggle(person.id)"
+                    >
+                        <v-card-title>{{person.name}} {{person.surname}}</v-card-title>
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-btn
+                            @click="back"
+                    >
+                        <v-icon>mdi-arrow-left</v-icon>
+                        Zpět
+                    </v-btn>
+                </v-col>
+                <v-col class="text-right">
+                    <v-btn
+                            color="teal accent-4"
+                            @click.prevent="save"
+                    >
+                        <v-icon>mdi-content-save</v-icon>
+                        Uložit
+                    </v-btn>
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
@@ -42,13 +47,14 @@
         components: {List}
     })
     export default class FlightDayPersons extends Vue {
-        FDpersons: IPerson[] = [];
         persons: IPerson[] = [];
+
+        idSelected: number[] = [];
 
         created() {
             let flightDay = FlightDayControllerDI.getFlightDay(this.id);
             if (flightDay !== null) {
-                this.FDpersons = flightDay.persons;
+                this.idSelected = flightDay.persons.map(x => x.id);
             }
 
             this.persons = PersonControllerDI.getAllPersons();
@@ -63,11 +69,19 @@
             });
         }
 
-        save() {
-            if (this.FDpersons !== null) {
-                FlightDayControllerDI.setPersonsToDay(this.id, this.FDpersons);
-                this.back();
+        toggle(id : number){
+            let index = this.idSelected.findIndex(x => x === id);
+
+            if (index > -1) {
+                this.idSelected.splice(index, 1);
+            } else {
+                this.idSelected.push(id);
             }
+        }
+
+        save() {
+            FlightDayControllerDI.setPersonsToDay(this.id, this.persons.filter(x => this.idSelected.includes(x.id)));
+            this.back();
         }
     }
 </script>

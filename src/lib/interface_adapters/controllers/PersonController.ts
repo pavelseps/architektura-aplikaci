@@ -6,15 +6,16 @@ import "reflect-metadata";
 import IPersonController from "@/lib/interfaces/Controllers/IPersonController";
 import IPerson from "@/lib/interfaces/IPerson";
 import IUCPerson from "@/lib/interfaces/UseCases/IUCPerson";
+import {TPersonStorage} from "@/lib/interfaces/Storages/TPersonStorage";
 
 @injectable()
 export default class PersonController implements IPersonController{
 
-    private readonly _storage : IStorage<IPerson>;
+    private readonly _storage : IStorage<IPerson, TPersonStorage>;
     private readonly _ucperson : IUCPerson;
 
     constructor(
-        @inject(TYPES.PersonStorage) storage : IStorage<IPerson>,
+        @inject(TYPES.PersonStorage) storage : IStorage<IPerson, TPersonStorage>,
         @inject(TYPES.UCPerson) ucplane : IUCPerson
     ) {
 

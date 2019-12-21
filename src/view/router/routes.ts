@@ -11,6 +11,7 @@ import PlaneNew from "@/view/pages/plane/PlaneNew.vue";
 import PersonNew from "@/view/pages/person/PersonNew.vue";
 import FlightDayPlanes from "@/view/pages/flightDay/FlightDayPlanes.vue";
 import FlightDayPersons from "@/view/pages/flightDay/FlightDayPersons.vue";
+import FlightNew from "@/view/pages/flight/FlightNew.vue";
 
 const routes: RouteConfig[] = [
     /**
@@ -82,6 +83,11 @@ const routes: RouteConfig[] = [
         name: "FlightDetail",
         path: '/flight/edit/:id',
         component: FlightDayDetail,
+    },
+    {
+        name: "FlightNew",
+        path: '/flightday/flight/:id/new',
+        component: FlightNew,
     },
 
 

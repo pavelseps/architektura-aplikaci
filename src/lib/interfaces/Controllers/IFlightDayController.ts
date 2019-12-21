@@ -14,9 +14,17 @@ export default interface IFlightDayController {
 
     getFlightsOfDay(id: number): IFlight[]
 
+    setFlight(id: number, flight: IFlight): IFlightDay | null
+
     removeFlight(id: number): void
 
     setPersonsToDay(id: number, persons: IPerson[]): IFlightDay | null
 
     setPlanesToDay(id: number, planes: IPlane[]): IFlightDay | null
+
+    preparedFlights(id: number): IFlight[]
+
+    onGroundPlanes(id: number): IPlane[]
+
+    inAirFlights(id: number): IFlight[]
 }

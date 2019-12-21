@@ -1,11 +1,11 @@
 import {inject, injectable} from "inversify";
 import {TYPES} from "@/lib/injection/types";
-import IStorage from "@/lib/Interfaces/IStorage";
-import IStorages from "@/lib/Interfaces/IStorages";
+import IStorage from "@/lib/interfaces/IStorage";
+import IStorages from "@/lib/interfaces/IStorages";
 import "reflect-metadata";
-import IPersonController from "@/lib/Interfaces/Controllers/IPersonController";
-import IPerson from "@/lib/Interfaces/IPerson";
-import IUCPerson from "@/lib/Interfaces/UseCases/IUCPerson";
+import IPersonController from "@/lib/interfaces/Controllers/IPersonController";
+import IPerson from "@/lib/interfaces/IPerson";
+import IUCPerson from "@/lib/interfaces/UseCases/IUCPerson";
 
 @injectable()
 export default class PersonController implements IPersonController{

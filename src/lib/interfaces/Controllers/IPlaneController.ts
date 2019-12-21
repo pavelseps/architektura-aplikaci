@@ -1,4 +1,4 @@
-import IPlane from "@/lib/Interfaces/IPlane";
+import IPlane from "@/lib/interfaces/IPlane";
 
 export default interface IPlaneController {
 

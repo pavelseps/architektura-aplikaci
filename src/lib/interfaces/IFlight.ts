@@ -1,6 +1,6 @@
-import IPlane from "@/lib/Interfaces/IPlane";
-import IPerson from "@/lib/Interfaces/IPerson";
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
+import IPlane from "@/lib/interfaces/IPlane";
+import IPerson from "@/lib/interfaces/IPerson";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
 
 export default interface IFlight {
     id: number

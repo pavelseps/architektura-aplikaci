@@ -1,5 +1,5 @@
-import IStorages from "@/lib/Interfaces/IStorages";
-import IPerson from "@/lib/Interfaces/IPerson";
+import IStorages from "@/lib/interfaces/IStorages";
+import IPerson from "@/lib/interfaces/IPerson";
 
 export default interface IUCPerson {
     add(name: string, surname: string, storage: IStorages): IPerson | null

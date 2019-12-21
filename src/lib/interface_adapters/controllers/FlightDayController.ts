@@ -1,11 +1,11 @@
 import {inject, injectable} from "inversify";
 import {TYPES} from "@/lib/injection/types";
-import IStorage from "@/lib/Interfaces/IStorage";
-import IStorages from "@/lib/Interfaces/IStorages";
+import IStorage from "@/lib/interfaces/IStorage";
+import IStorages from "@/lib/interfaces/IStorages";
 import "reflect-metadata";
-import IFlightDayController from "@/lib/Interfaces/Controllers/IFlightDayController";
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
-import IUCFlightDay from "@/lib/Interfaces/UseCases/IUCFlightDay";
+import IFlightDayController from "@/lib/interfaces/Controllers/IFlightDayController";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
+import IUCFlightDay from "@/lib/interfaces/UseCases/IUCFlightDay";
 
 @injectable()
 export default class FlightDayController implements IFlightDayController{

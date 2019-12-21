@@ -11,7 +11,7 @@
 <script lang="ts">
     import {Component} from 'vue-property-decorator';
     import Vue from "vue";
-    import {FlightControllerDI, FlightDayControllerDI, PersonControllerDI, PlaneControllerDI} from "@/lib/Factory";
+    import {FlightControllerDI, FlightDayControllerDI, PersonControllerDI, PlaneControllerDI} from "@/lib/injection/Factory";
 
     @Component({
         components: {}

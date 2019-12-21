@@ -1,4 +1,4 @@
-import IFlight from "@/lib/Interfaces/IFlight";
+import IFlight from "@/lib/interfaces/IFlight";
 
 export default interface IFlightController {
 

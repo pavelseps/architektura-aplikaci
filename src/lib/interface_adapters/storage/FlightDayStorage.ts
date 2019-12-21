@@ -1,7 +1,7 @@
-import IStorage from "@/lib/Interfaces/IStorage";
+import IStorage from "@/lib/interfaces/IStorage";
 import {injectable} from "inversify";
 import "reflect-metadata";
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
 
 @injectable()
 export default class FlightDayStorage implements IStorage<IFlightDay> {

@@ -1,10 +1,10 @@
 import {inject, injectable} from "inversify";
 import {TYPES} from "@/lib/injection/types";
-import IStorage from "@/lib/Interfaces/IStorage";
-import IPlane from "@/lib/Interfaces/IPlane";
-import IUCPlane from "@/lib/Interfaces/UseCases/IUCPlane";
-import IStorages from "@/lib/Interfaces/IStorages";
-import IPlaneController from "@/lib/Interfaces/Controllers/IPlaneController";
+import IStorage from "@/lib/interfaces/IStorage";
+import IPlane from "@/lib/interfaces/IPlane";
+import IUCPlane from "@/lib/interfaces/UseCases/IUCPlane";
+import IStorages from "@/lib/interfaces/IStorages";
+import IPlaneController from "@/lib/interfaces/Controllers/IPlaneController";
 import "reflect-metadata";
 
 @injectable()

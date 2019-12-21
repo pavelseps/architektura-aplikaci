@@ -1,7 +1,7 @@
-import IStorage from "@/lib/Interfaces/IStorage";
+import IStorage from "@/lib/interfaces/IStorage";
 import {injectable} from "inversify";
 import "reflect-metadata";
-import IFlight from "@/lib/Interfaces/IFlight";
+import IFlight from "@/lib/interfaces/IFlight";
 
 @injectable()
 export default class FlightStorage implements IStorage<IFlight> {

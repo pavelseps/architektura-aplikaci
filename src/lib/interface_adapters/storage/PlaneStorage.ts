@@ -1,5 +1,5 @@
-import IStorage from "@/lib/Interfaces/IStorage";
-import IPlane from "@/lib/Interfaces/IPlane";
+import IStorage from "@/lib/interfaces/IStorage";
+import IPlane from "@/lib/interfaces/IPlane";
 import {injectable} from "inversify";
 import "reflect-metadata";
 

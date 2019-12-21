@@ -1,8 +1,8 @@
-import IStorages from "@/lib/Interfaces/IStorages";
-import IUCPlane from "@/lib/Interfaces/UseCases/IUCPlane";
+import IStorages from "@/lib/interfaces/IStorages";
+import IUCPlane from "@/lib/interfaces/UseCases/IUCPlane";
 import {inject, injectable} from "inversify";
 import "reflect-metadata";
-import IPlane from "@/lib/Interfaces/IPlane";
+import IPlane from "@/lib/interfaces/IPlane";
 import {TYPES} from "@/lib/injection/types";
 
 @injectable()

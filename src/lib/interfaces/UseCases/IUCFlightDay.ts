@@ -1,8 +1,8 @@
-import IStorages from "@/lib/Interfaces/IStorages";
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
-import IPerson from "@/lib/Interfaces/IPerson";
-import IPlane from "@/lib/Interfaces/IPlane";
-import IFlight from "@/lib/Interfaces/IFlight";
+import IStorages from "@/lib/interfaces/IStorages";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
+import IPerson from "@/lib/interfaces/IPerson";
+import IPlane from "@/lib/interfaces/IPlane";
+import IFlight from "@/lib/interfaces/IFlight";
 
 export default interface IUCFlightDay {
     create(date : Date, storage: IStorages): IFlightDay | null

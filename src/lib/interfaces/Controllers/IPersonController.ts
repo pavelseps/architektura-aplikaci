@@ -1,4 +1,4 @@
-import IPerson from "@/lib/Interfaces/IPerson";
+import IPerson from "@/lib/interfaces/IPerson";
 
 export default interface IPersonController {
 

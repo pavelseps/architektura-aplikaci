@@ -1,9 +1,9 @@
-import IUCFlightDay from "@/lib/Interfaces/UseCases/IUCFlightDay";
-import IStorages from "@/lib/Interfaces/IStorages";
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
-import IFlight from "@/lib/Interfaces/IFlight";
-import IPerson from "@/lib/Interfaces/IPerson";
-import IPlane from "@/lib/Interfaces/IPlane";
+import IUCFlightDay from "@/lib/interfaces/UseCases/IUCFlightDay";
+import IStorages from "@/lib/interfaces/IStorages";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
+import IFlight from "@/lib/interfaces/IFlight";
+import IPerson from "@/lib/interfaces/IPerson";
+import IPlane from "@/lib/interfaces/IPlane";
 import {inject, injectable} from "inversify";
 import {TYPES} from "@/lib/injection/types";
 import "reflect-metadata";

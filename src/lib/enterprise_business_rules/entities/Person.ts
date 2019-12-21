@@ -1,5 +1,5 @@
 import {injectable} from "inversify";
-import IPerson from "@/lib/Interfaces/IPerson";
+import IPerson from "@/lib/interfaces/IPerson";
 
 @injectable()
 export default class Person implements IPerson{

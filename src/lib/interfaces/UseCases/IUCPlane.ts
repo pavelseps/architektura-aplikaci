@@ -1,5 +1,5 @@
-import IPlane from "@/lib/Interfaces/IPlane";
-import IStorages from "@/lib/Interfaces/IStorages";
+import IPlane from "@/lib/interfaces/IPlane";
+import IStorages from "@/lib/interfaces/IStorages";
 
 export default interface IUCPlane {
     add(callsign: string, storage: IStorages): IPlane | null

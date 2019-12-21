@@ -1,7 +1,7 @@
-import IStorage from "@/lib/Interfaces/IStorage";
+import IStorage from "@/lib/interfaces/IStorage";
 import {injectable} from "inversify";
 import "reflect-metadata";
-import IPerson from "@/lib/Interfaces/IPerson";
+import IPerson from "@/lib/interfaces/IPerson";
 
 @injectable()
 export default class PersonStorage implements IStorage<IPerson> {

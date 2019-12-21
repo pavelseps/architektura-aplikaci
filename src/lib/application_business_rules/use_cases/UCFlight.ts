@@ -1,8 +1,8 @@
-import IUCFlight from "@/lib/Interfaces/UseCases/IUCFlight";
-import IStorages from "@/lib/Interfaces/IStorages";
-import IFlight from "@/lib/Interfaces/IFlight";
-import IPerson from "@/lib/Interfaces/IPerson";
-import IPlane from "@/lib/Interfaces/IPlane";
+import IUCFlight from "@/lib/interfaces/UseCases/IUCFlight";
+import IStorages from "@/lib/interfaces/IStorages";
+import IFlight from "@/lib/interfaces/IFlight";
+import IPerson from "@/lib/interfaces/IPerson";
+import IPlane from "@/lib/interfaces/IPlane";
 import {inject, injectable} from "inversify";
 import {TYPES} from "@/lib/injection/types";
 import "reflect-metadata";

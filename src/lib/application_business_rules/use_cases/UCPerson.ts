@@ -1,9 +1,9 @@
-import IStorages from "@/lib/Interfaces/IStorages";
+import IStorages from "@/lib/interfaces/IStorages";
 import {inject, injectable} from "inversify";
 import "reflect-metadata";
 import {TYPES} from "@/lib/injection/types";
-import IUCPerson from "@/lib/Interfaces/UseCases/IUCPerson";
-import IPerson from "@/lib/Interfaces/IPerson";
+import IUCPerson from "@/lib/interfaces/UseCases/IUCPerson";
+import IPerson from "@/lib/interfaces/IPerson";
 
 @injectable()
 export default class UCPerson implements IUCPerson {

@@ -1,4 +1,4 @@
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
 
 export default interface IFlightDayController {
 

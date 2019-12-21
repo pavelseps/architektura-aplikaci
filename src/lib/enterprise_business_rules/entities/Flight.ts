@@ -1,8 +1,8 @@
 import {injectable} from "inversify";
-import IFlight from "@/lib/Interfaces/IFlight";
-import IPlane from "@/lib/Interfaces/IPlane";
-import IPerson from "@/lib/Interfaces/IPerson";
-import IFlightDay from "@/lib/Interfaces/IFlightDay";
+import IFlight from "@/lib/interfaces/IFlight";
+import IPlane from "@/lib/interfaces/IPlane";
+import IPerson from "@/lib/interfaces/IPerson";
+import IFlightDay from "@/lib/interfaces/IFlightDay";
 
 @injectable()
 export default class Flight implements IFlight {

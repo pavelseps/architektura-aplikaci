@@ -62,7 +62,8 @@
         }
 
         back() {
-            this.$router.push({name: "PersonList"});
+            this.$router.push({name: "PersonList"}).catch(err => {
+            });
         }
 
         save() {

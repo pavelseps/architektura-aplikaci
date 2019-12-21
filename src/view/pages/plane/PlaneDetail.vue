@@ -52,7 +52,8 @@
         }
 
         back() {
-            this.$router.push({name: "PlaneList"});
+            this.$router.push({name: "PlaneList"}).catch(err => {
+            });
         }
 
         save() {

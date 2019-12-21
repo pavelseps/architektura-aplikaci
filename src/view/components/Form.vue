@@ -15,7 +15,7 @@
                             color="teal accent-4"
                             @click="save"
                     >
-                        <v-icon>mdi-save</v-icon>
+                        <v-icon>mdi-content-save</v-icon>
                         Uložit
                     </v-btn>
                 </v-col>
@@ -34,15 +34,16 @@
                                 <v-btn
                                         @click="back"
                                 >
+                                    <v-icon>mdi-arrow-left</v-icon>
                                     Zpět
                                 </v-btn>
                             </v-col>
                             <v-col class="text-right">
-
                                 <v-btn
                                         color="teal accent-4"
                                         @click.prevent="save"
                                 >
+                                    <v-icon>mdi-content-save</v-icon>
                                     Uložit
                                 </v-btn>
                             </v-col>

@@ -9,6 +9,8 @@ import FlightDayDetail from "@/view/pages/flightDay/FlightDayDetail.vue";
 import Home from "@/view/pages/Home.vue";
 import PlaneNew from "@/view/pages/plane/PlaneNew.vue";
 import PersonNew from "@/view/pages/person/PersonNew.vue";
+import FlightDayPlanes from "@/view/pages/flightDay/FlightDayPlanes.vue";
+import FlightDayPersons from "@/view/pages/flightDay/FlightDayPersons.vue";
 
 const routes: RouteConfig[] = [
     /**
@@ -21,12 +23,12 @@ const routes: RouteConfig[] = [
     },
     {
         name: "PlaneDetail",
-        path: '/plane/:id',
+        path: '/plane/edit/:id',
         component: PlaneDetail,
     },
     {
         name: "PlaneNew",
-        path: '/planenew',
+        path: '/plane/new',
         component: PlaneNew,
     },
 
@@ -40,12 +42,12 @@ const routes: RouteConfig[] = [
     },
     {
         name: "PersonDetail",
-        path: '/person/:id',
+        path: '/person/edit/:id',
         component: PersonDetail,
     },
     {
         name: "PersonNew",
-        path: '/personnew',
+        path: '/person/new',
         component: PersonNew,
     },
 
@@ -59,8 +61,18 @@ const routes: RouteConfig[] = [
     },
     {
         name: "FlightDayDetail",
-        path: '/flightday/:id',
+        path: '/flightday/edit/:id',
         component: FlightDayDetail,
+    },
+    {
+        name: "FlightDayPersons",
+        path: '/flightday/persons/:id',
+        component: FlightDayPersons,
+    },
+    {
+        name: "FlightDayPlanes",
+        path: '/flightday/planes/:id',
+        component: FlightDayPlanes,
     },
 
     /**
@@ -68,7 +80,7 @@ const routes: RouteConfig[] = [
      */
     {
         name: "FlightDetail",
-        path: '/flight/:id',
+        path: '/flight/edit/:id',
         component: FlightDayDetail,
     },
 

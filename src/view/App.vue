@@ -86,7 +86,7 @@
 
         pushRoute(name: string) {
             this.$router.push({name}).catch(err => {
-            })
+            });
         }
     }
 </script>

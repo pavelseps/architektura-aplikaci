@@ -2,44 +2,44 @@ import IStorage from "@/lib/interfaces/IStorage";
 import IPlane from "@/lib/interfaces/IPlane";
 import {injectable} from "inversify";
 import "reflect-metadata";
-import Plane from "@/lib/enterprise_business_rules/entities/Plane";
+import LocalStorageStorage from "@/lib/LocalStorageStorage";
+import {TPlaneStorage} from "@/lib/interfaces/Storages/TPlaneStorage";
 
 @injectable()
-export default class PlaneStorage implements IStorage<IPlane> {
+export default class PlaneStorage implements IStorage<IPlane, TPlaneStorage> {
+    static STORAGE_NAME = "PlaneStorage";
+
+    private readonly _storage: LocalStorageStorage<TPlaneStorage>;
+
+    constructor() {
+        this._storage = new LocalStorageStorage<TPlaneStorage>(PlaneStorage.STORAGE_NAME);
+    }
 
     get(id: number): IPlane | null {
-        let plane = new Plane();
-        plane.id = id;
-        plane.callsign = "OK-1231";
-        return plane;
+        return this._storage.get(id);
     }
 
     getAll(): IPlane[] {
-        let result = [
-            new Plane(),
-            new Plane(),
-            new Plane(),
-        ];
-
-        result[0].id = 0;
-        result[0].callsign = "OK-1231";
-        result[1].id = 1;
-        result[1].callsign = "OK-4567";
-        result[2].id = 2;
-        result[2].callsign = "OK-6548";
-
-        return result;
+        return this._storage.getAll();
     }
 
     remove(id: number): void {
+        this._storage.remove(id);
     }
 
     update(id: number, data: IPlane): IPlane {
-        return data;
+        return this._storage.update(id, data);
     }
 
     create(data: IPlane): IPlane {
-        console.log("Saving to local storage plane", data);
-        return data;
+        return this._storage.create(data);
+    }
+
+    intoty(data: TPlaneStorage): IPlane {
+        return <IPlane>data;
+    }
+
+    tytoin(data: IPlane): TPlaneStorage {
+        return <TPlaneStorage>data;
     }
 }

@@ -17,7 +17,7 @@
                         </v-list-item-avatar>
 
                         <v-list-item-content>
-                            <v-list-item-title v-text="flightDay.date"></v-list-item-title>
+                            <v-list-item-title v-text="getNice(flightDay.date)"></v-list-item-title>
                             <v-list-item-subtitle v-text="''"></v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -58,6 +58,10 @@
         add(){
             FlightDayControllerDI.addFlightDay(new Date());
             this.updateDays();
+        }
+
+        getNice(date : Date){
+            return `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`
         }
     }
 </script>

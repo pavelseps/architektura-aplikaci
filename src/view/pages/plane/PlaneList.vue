@@ -51,7 +51,8 @@
         }
 
         add(){
-            this.$router.push({name: "PlaneNew"});
+            this.$router.push({name: "PlaneNew"}).catch(err => {
+            });
         }
     }
 </script>

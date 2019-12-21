@@ -1,7 +1,48 @@
 <template>
     <div>
-        <h2>Flight Day detail</h2>
-        <p v-if="flightDay !== null">flightDay: {{flightDay.date}}</p>
+        <v-container
+                fluid
+        >
+            <v-row
+                    align="center"
+                    justify="center"
+            >
+                <v-col class="text-left">
+                    <h1>Letecký den: {{getNice(flightDay.date)}}</h1>
+                </v-col>
+                <v-col class="text-right">
+                    <v-btn
+                            class="ml-2"
+                            color="teal accent-4"
+                            @click="generateReport"
+                    >
+                        <v-icon>mdi-content-save</v-icon>
+                        Generovat Šmírku
+                    </v-btn>
+                    <v-btn
+                            class="ml-2"
+                            color="teal accent-4"
+                            @click="editPlanes"
+                    >
+                        <v-icon>mdi-airplane</v-icon>
+                        Upravit Letadla
+                    </v-btn>
+                    <v-btn
+                            class="ml-2"
+                            color="teal accent-4"
+                            @click="editPersons"
+                    >
+                        <v-icon>mdi-account</v-icon>
+                        Upravit Piloty
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col>
+
+                </v-col>
+            </v-row>
+        </v-container>
     </div>
 </template>
 
@@ -26,8 +67,6 @@
             return parseInt(this.$route.params.id);
         }
 
-        //TODO Add new flight, edit planes, edit persons
-
         created() {
             if (this.$route.params.id !== undefined) {
                 let flightDay = FlightDayControllerDI.getFlightDay(parseInt(this.$route.params.id));
@@ -37,15 +76,22 @@
             }
         }
 
-        back() {
-            this.$router.push({name: "PersonList"});
+        generateReport() {
+            //TODO generating report
         }
 
-        save() {
-            //TODO validations
-            if (this.flightDay !== null) {
-                this.back();
-            }
+        editPlanes() {
+            this.$router.push({name: 'FlightDayPlanes', params: {}}).catch(err => {
+            })
+        }
+
+        editPersons() {
+            this.$router.push({name: 'FlightDayPersons', params: {}}).catch(err => {
+            });
+        }
+
+        getNice(date: Date) {
+            return `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`
         }
     }
 </script>

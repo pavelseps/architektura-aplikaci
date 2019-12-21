@@ -51,7 +51,8 @@
         }
 
         add(){
-            this.$router.push({name: "PersonNew"});
+            this.$router.push({name: "PersonNew"}).catch(err => {
+            });
         }
     }
 </script>

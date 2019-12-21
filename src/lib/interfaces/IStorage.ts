@@ -1,13 +1,17 @@
-export default interface IStorage<T>{
+export default interface IStorage<I, T>{
 
 
-    getAll(): T[]
+    getAll(): I[]
 
-    get(id: number): T | null
+    get(id: number): I | null
 
-    create(data: T): T
+    create(data: I): I
 
-    update(id: number, data: T): T
+    update(id: number, data: I): I
 
     remove(id: number): void
+
+    intoty(data : I) : T
+
+    tytoin(data : T) : I
 }

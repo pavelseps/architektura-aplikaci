@@ -29,12 +29,16 @@ import FlightDayStorage from "@/lib/interface_adapters/storage/FlightDayStorage"
 import FlightDayController from "@/lib/interface_adapters/controllers/FlightDayController";
 import UCFlightDay from "@/lib/application_business_rules/use_cases/UCFlightDay";
 import FlightDay from "@/lib/enterprise_business_rules/entities/FlightDay";
+import {TFlightDayStorage} from "@/lib/interfaces/Storages/TFlightDayStorage";
+import {TFlightStorage} from "@/lib/interfaces/Storages/TFlightStorage";
+import {TPersonStorage} from "@/lib/interfaces/Storages/TPersonStorage";
+import {TPlaneStorage} from "@/lib/interfaces/Storages/TPlaneStorage";
 
 const container = new Container();
 /**
  * Planes
  */
-container.bind<IStorage<IPlane>>(TYPES.PlaneStorage).to(PlaneStorage).inSingletonScope();
+container.bind<IStorage<IPlane, TPlaneStorage>>(TYPES.PlaneStorage).to(PlaneStorage).inSingletonScope();
 container.bind<IUCPlane>(TYPES.UCPlane).to(UCPlane).inSingletonScope();
 container.bind<IPlaneController>(TYPES.PlaneController).to(PlaneController).inSingletonScope();
 container.bind<IPlane>(TYPES.Plane).to(Plane);
@@ -49,7 +53,7 @@ container.bind<interfaces.Factory<IPlane>>(TYPES.PlaneFactory).toFactory<IPlane>
  * Person
  */
 
-container.bind<IStorage<IPerson>>(TYPES.PersonStorage).to(PersonStorage).inSingletonScope();
+container.bind<IStorage<IPerson, TPersonStorage>>(TYPES.PersonStorage).to(PersonStorage).inSingletonScope();
 container.bind<IUCPerson>(TYPES.UCPerson).to(UCPerson).inSingletonScope();
 container.bind<IPersonController>(TYPES.PersonController).to(PersonController).inSingletonScope();
 container.bind<IPerson>(TYPES.Person).to(Person);
@@ -64,7 +68,7 @@ container.bind<interfaces.Factory<IPerson>>(TYPES.PersonFactory).toFactory<IPers
  * Flight
  */
 
-container.bind<IStorage<IFlight>>(TYPES.FlightStorage).to(FlightStorage).inSingletonScope();
+container.bind<IStorage<IFlight, TFlightStorage>>(TYPES.FlightStorage).to(FlightStorage).inSingletonScope();
 container.bind<IUCFlight>(TYPES.UCFlight).to(UCFlight).inSingletonScope();
 container.bind<IFlightController>(TYPES.FlightController).to(FlightController).inSingletonScope();
 container.bind<IFlight>(TYPES.Flight).to(Flight);
@@ -79,7 +83,7 @@ container.bind<interfaces.Factory<IFlight>>(TYPES.FlightFactory).toFactory<IFlig
  * Flight day
  */
 
-container.bind<IStorage<IFlightDay>>(TYPES.FlightDayStorage).to(FlightDayStorage).inSingletonScope();
+container.bind<IStorage<IFlightDay, TFlightDayStorage>>(TYPES.FlightDayStorage).to(FlightDayStorage).inSingletonScope();
 container.bind<IUCFlightDay>(TYPES.UCFlightDay).to(UCFlightDay).inSingletonScope();
 container.bind<IFlightDayController>(TYPES.FlightDayController).to(FlightDayController).inSingletonScope();
 container.bind<IFlightDay>(TYPES.FlightDay).to(FlightDay);

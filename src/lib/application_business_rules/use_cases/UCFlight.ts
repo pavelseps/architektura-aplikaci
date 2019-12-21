@@ -8,7 +8,7 @@ import {TYPES} from "@/lib/injection/types";
 import "reflect-metadata";
 
 @injectable()
-export default class UCFlight implements IUCFlight{
+export default class UCFlight implements IUCFlight {
 
     private readonly _flightFactory: () => IFlight;
 
@@ -30,30 +30,100 @@ export default class UCFlight implements IUCFlight{
         return null;
     }
 
-    finish(date: Date, storage: IStorages): IFlight | null {
+    finish(id: number, date: Date, {flightStorage}: IStorages): IFlight | null {
+
+        if (flightStorage !== undefined) {
+            let flight = flightStorage.get(id);
+            if (flight === null) {
+                return null;
+            }
+
+            flight.finishDate = date;
+
+            return flight
+        }
+
         return null;
     }
 
-    get(id: number, storage: IStorages): IFlight | null {
+    get(id: number, {flightStorage}: IStorages): IFlight | null {
+        if (flightStorage !== undefined) {
+            return flightStorage.get(id);
+        }
+
         return null;
     }
 
-    prepare(prepared: boolean, storage: IStorages): IFlight | null {
+    prepare(id: number, prepared: boolean, {flightStorage}: IStorages): IFlight | null {
+
+        if (flightStorage !== undefined) {
+            let flight = flightStorage.get(id);
+            if (flight === null) {
+                return null;
+            }
+
+            flight.ready = prepared;
+
+            return flight
+        }
+
         return null;
     }
 
-    remove(id: number, storage: IStorages): void {
+    remove(id: number, {flightStorage}: IStorages): void {
+        if (flightStorage !== undefined) {
+            flightStorage.remove(id);
+        }
     }
 
-    setPlane(captain: IPerson, crew: IPerson[], plane: IPlane): IFlight | null {
+    setPlane(id: number, captain: IPerson, crew: IPerson[], plane: IPlane, {flightStorage}: IStorages): IFlight | null {
+
+        if (flightStorage !== undefined) {
+            let flight = flightStorage.get(id);
+            if (flight === null) {
+                return null;
+            }
+
+            flight.captain = captain;
+            flight.crew = crew;
+            flight.plane = plane;
+
+            return flight
+        }
         return null;
     }
 
-    setTow(captain: IPerson, crew: IPerson[], plane: IPlane): IFlight | null {
+    setTow(id: number, captain: IPerson, crew: IPerson[], plane: IPlane, {flightStorage}: IStorages): IFlight | null {
+
+        if (flightStorage !== undefined) {
+            let flight = flightStorage.get(id);
+            if (flight === null) {
+                return null;
+            }
+
+            flight.towCaptain = captain;
+            flight.towCrew = crew;
+            flight.towPlane = plane;
+
+            return flight
+        }
+
         return null;
     }
 
-    start(date: Date, storage: IStorages): IFlight | null {
+    start(id: number, date: Date, {flightStorage}: IStorages): IFlight | null {
+
+        if (flightStorage !== undefined) {
+            let flight = flightStorage.get(id);
+            if (flight === null) {
+                return null;
+            }
+
+            flight.startDate = date;
+
+            return flight
+        }
+
         return null;
     }
 

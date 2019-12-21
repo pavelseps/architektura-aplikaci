@@ -2,10 +2,12 @@ import {injectable} from "inversify";
 import IFlight from "@/lib/Interfaces/IFlight";
 import IPlane from "@/lib/Interfaces/IPlane";
 import IPerson from "@/lib/Interfaces/IPerson";
-import {plan} from "inversify/dts/planning/planner";
+import IFlightDay from "@/lib/Interfaces/IFlightDay";
 
 @injectable()
 export default class Flight implements IFlight {
+    id: number;
+    flightDay!: IFlightDay;
     captain!: IPerson;
     crew!: IPerson[];
     finishDate?: Date;
@@ -19,6 +21,7 @@ export default class Flight implements IFlight {
 
 
     constructor() {
+        this.id = 0;
         this.ready = false;
         this.date = new Date();
     }

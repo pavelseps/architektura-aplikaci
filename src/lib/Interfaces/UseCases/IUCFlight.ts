@@ -6,15 +6,15 @@ import IFlight from "@/lib/Interfaces/IFlight";
 export default interface IUCFlight {
     create(date: Date, storage: IStorages): IFlight | null
 
-    setTow(captain: IPerson, crew: IPerson[], plane: IPlane): IFlight | null
+    setTow(id: number, captain: IPerson, crew: IPerson[], plane: IPlane, storage: IStorages): IFlight | null
 
-    setPlane(captain: IPerson, crew: IPerson[], plane: IPlane): IFlight | null
+    setPlane(id: number, captain: IPerson, crew: IPerson[], plane: IPlane, storage: IStorages): IFlight | null
 
-    prepare(prepared: boolean, storage: IStorages): IFlight | null
+    prepare(id: number, prepared: boolean, storage: IStorages): IFlight | null
 
-    start(date: Date, storage: IStorages): IFlight | null
+    start(id: number, date: Date, storage: IStorages): IFlight | null
 
-    finish(date: Date, storage: IStorages): IFlight | null
+    finish(id: number, date: Date, storage: IStorages): IFlight | null
 
     get(id: number, storage: IStorages): IFlight | null
 

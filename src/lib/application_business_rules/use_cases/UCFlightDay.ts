@@ -9,7 +9,7 @@ import {TYPES} from "@/lib/injection/types";
 import "reflect-metadata";
 
 @injectable()
-export default class UCFlightDay implements IUCFlightDay{
+export default class UCFlightDay implements IUCFlightDay {
 
     private readonly _flightDayFactory: () => IFlightDay;
 
@@ -31,26 +31,66 @@ export default class UCFlightDay implements IUCFlightDay{
         return null;
     }
 
-    get(id: number, storage: IStorages): IFlightDay | null {
+    get(id: number, {flightDayStorage}: IStorages): IFlightDay | null {
+        if (flightDayStorage !== undefined) {
+            return flightDayStorage.get(id);
+        }
+
         return null;
     }
 
-    getAll(storage: IStorages): IFlightDay[] {
+    getAll({flightDayStorage}: IStorages): IFlightDay[] {
+        if (flightDayStorage !== undefined) {
+            return flightDayStorage.getAll();
+        }
+
         return [];
     }
 
-    getFlights(id: number, storage: IStorages): IFlight[] {
+    getFlights(id: number, {flightStorage}: IStorages): IFlight[] {
+        if (flightStorage !== undefined) {
+            let flights = flightStorage.getAll();
+
+            return flights.filter(x => x.flightDay.id === id);
+        }
+
         return [];
     }
 
-    remove(id: number, storage: IStorages): void {
+    remove(id: number, {flightDayStorage}: IStorages): void {
+
+        if (flightDayStorage !== undefined) {
+            flightDayStorage.remove(id);
+        }
     }
 
-    setPersons(id: number, persons: IPerson[], storage: IStorages): IFlightDay | null {
+    setPersons(id: number, persons: IPerson[], {flightDayStorage}: IStorages): IFlightDay | null {
+        if (flightDayStorage !== undefined) {
+            let flightDay = flightDayStorage.get(id);
+            if (flightDay === null) {
+                return null;
+            }
+
+            flightDay.persons = persons;
+
+            flightDayStorage.update(id, flightDay);
+        }
+
         return null;
     }
 
-    setPlanes(id: number, planes: IPlane[], storage: IStorages): IFlightDay | null {
+    setPlanes(id: number, planes: IPlane[], {flightDayStorage}: IStorages): IFlightDay | null {
+        if (flightDayStorage !== undefined) {
+            let flightDay = flightDayStorage.get(id);
+            if (flightDay === null) {
+                return null;
+            }
+
+            flightDay.planes = planes;
+
+            flightDayStorage.update(id, flightDay);
+        }
+
         return null;
     }
 

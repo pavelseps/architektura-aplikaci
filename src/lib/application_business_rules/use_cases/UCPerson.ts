@@ -17,12 +17,13 @@ export default class UCPerson implements IUCPerson {
         this._personFactory = personFactory;
     }
 
-    add(name: string, surname: string, {personStorage}: IStorages) {
+    add(name: string, surname: string, email: string, {personStorage}: IStorages) {
 
         if (personStorage !== undefined) {
             let person = this._personFactory();
             person.name = name;
             person.surname = surname;
+            person.email = email;
 
             return personStorage.create(person);
         }
@@ -48,12 +49,13 @@ export default class UCPerson implements IUCPerson {
         return null;
     }
 
-    update(id: number, name: string, surname: string,  {personStorage}: IStorages){
+    update(id: number, name: string, surname: string, email: string,  {personStorage}: IStorages){
 
         if (personStorage !== undefined) {
             let person = this._personFactory();
             person.name = name;
             person.surname = surname;
+            person.email = email;
 
             return personStorage.update(id, person);
         }

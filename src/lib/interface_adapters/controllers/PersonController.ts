@@ -29,7 +29,23 @@ export default class PersonController implements IPersonController{
         }
     }
 
-    addPerson(name : string, surname: string){
-        return this._ucperson.add(name, surname,  this.storages);
+    addPerson(name : string, surname: string, email : string){
+        return this._ucperson.add(name, surname, email, this.storages);
+    }
+
+    getAllPersons(): IPerson[] {
+        return this._ucperson.getAll(this.storages);
+    }
+
+    getPerson(id: number): IPerson | null {
+        return this._ucperson.get(id, this.storages);
+    }
+
+    removePerson(id: number): void {
+        this._ucperson.remove(id, this.storages);
+    }
+
+    updatePerson(id: number, name: string, surname: string, email: string): IPerson | null {
+        return this._ucperson.update(id, name, surname, email, this.storages);
     }
 }

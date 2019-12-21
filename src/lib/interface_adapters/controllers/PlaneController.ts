@@ -8,14 +8,14 @@ import IPlaneController from "@/lib/interfaces/Controllers/IPlaneController";
 import "reflect-metadata";
 
 @injectable()
-export default class PlaneController implements IPlaneController{
+export default class PlaneController implements IPlaneController {
 
-    private readonly _storage : IStorage<IPlane>;
-    private readonly _ucplane : IUCPlane;
+    private readonly _storage: IStorage<IPlane>;
+    private readonly _ucplane: IUCPlane;
 
     constructor(
-        @inject(TYPES.PlaneStorage) storage : IStorage<IPlane>,
-        @inject(TYPES.UCPlane) ucplane : IUCPlane
+        @inject(TYPES.PlaneStorage) storage: IStorage<IPlane>,
+        @inject(TYPES.UCPlane) ucplane: IUCPlane
     ) {
 
         this._storage = storage;
@@ -23,13 +23,29 @@ export default class PlaneController implements IPlaneController{
 
     }
 
-    private get storages() : IStorages{
+    private get storages(): IStorages {
         return {
             planeStorage: this._storage
         }
     }
 
-    addPlane(callsign : string){
-        return this._ucplane.add(callsign, this.storages)
+    addPlane(callsign: string) {
+        return this._ucplane.add(callsign, this.storages);
+    }
+
+    getAllPlanes() {
+        return this._ucplane.getAll(this.storages);
+    }
+
+    getPlane(id: number) {
+        return this._ucplane.get(id, this.storages);
+    }
+
+    removePlane(id: number) {
+        this._ucplane.remove(id, this.storages);
+    }
+
+    updatePlane(id: number, callsign: string) {
+        return this._ucplane.update(id, callsign, this.storages);
     }
 }

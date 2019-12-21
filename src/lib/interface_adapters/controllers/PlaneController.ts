@@ -2,9 +2,9 @@ import {inject, injectable} from "inversify";
 import {TYPES} from "@/lib/injection/types";
 import IStorage from "@/lib/Interfaces/IStorage";
 import IPlane from "@/lib/Interfaces/IPlane";
-import IUCPlane from "@/lib/Interfaces/IUCPlane";
+import IUCPlane from "@/lib/Interfaces/UseCases/IUCPlane";
 import IStorages from "@/lib/Interfaces/IStorages";
-import IPlaneController from "@/lib/Interfaces/IPlaneController";
+import IPlaneController from "@/lib/Interfaces/Controllers/IPlaneController";
 import "reflect-metadata";
 
 @injectable()
@@ -30,6 +30,6 @@ export default class PlaneController implements IPlaneController{
     }
 
     addPlane(callsign : string){
-        this._ucplane.addPlane(callsign, this.storages)
+        return this._ucplane.add(callsign, this.storages)
     }
 }

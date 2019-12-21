@@ -6,14 +6,14 @@ import IPlane from "@/lib/Interfaces/IPlane";
 
 @injectable()
 export default class FlightDay implements IFlightDay{
-    day: Date;
+    date: Date;
     flights: IFlight[];
     persons: IPerson[];
     planes: IPlane[];
 
 
     constructor() {
-        this.day = new Date();
+        this.date = new Date();
         this.flights = [];
         this.persons = [];
         this.planes = [];

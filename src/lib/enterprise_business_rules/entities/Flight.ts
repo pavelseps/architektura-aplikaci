@@ -6,27 +6,20 @@ import {plan} from "inversify/dts/planning/planner";
 
 @injectable()
 export default class Flight implements IFlight {
-    captain: IPerson;
-    crew: IPerson[];
+    captain!: IPerson;
+    crew!: IPerson[];
     finishDate?: Date;
-    plane: IPlane;
+    plane !: IPlane;
     ready: boolean;
+    date: Date;
     startDate?: Date;
     towCaptain?: IPerson;
     towCrew?: IPerson[];
     towPlane?: IPlane;
 
 
-    constructor(plane: IPlane, captain: IPerson, crew: IPerson[], towPlane ?: IPlane, towCaptain ?: IPerson, towCrew ?: IPerson[]) {
+    constructor() {
         this.ready = false;
-
-        this.captain = captain;
-        this.crew = crew;
-        this.plane = plane;
-
-        this.towCaptain = towCaptain;
-        this.towCrew = towCrew;
-        this.towPlane = towPlane;
-
+        this.date = new Date();
     }
 }

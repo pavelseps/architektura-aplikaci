@@ -6,6 +6,8 @@ export default interface IFlight {
     towCaptain?: IPerson
     towCrew?: IPerson[]
 
+    date: Date
+
     startDate?: Date
     finishDate?: Date
 

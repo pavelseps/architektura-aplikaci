@@ -5,6 +5,6 @@ import IFlight from "@/lib/Interfaces/IFlight";
 export default interface IFlightDay {
     planes: IPlane[]
     persons: IPerson[]
-    day: Date
+    date: Date
     flights: IFlight[]
 }

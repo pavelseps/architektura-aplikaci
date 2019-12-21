@@ -2,16 +2,37 @@ export const TYPES = {
     /**
      * Planes
      */
-    UCPlane: Symbol.for("UCPlane"),
-    PlaneRepository: Symbol.for("PlaneRepository"),
     PlaneController: Symbol.for("PlaneController"),
-    Plane: Symbol.for("Plane"),
+    PlaneStorage: Symbol.for("PlaneStorage"),
+    UCPlane: Symbol.for("UCPlane"),
     PlaneFactory: Symbol.for("PlaneFactory"),
-    PlaneStorage: Symbol.for("PlaneStorage")
+    Plane: Symbol.for("Plane"),
 
 
     /**
-     *
+     * Person
      */
+    PersonController: Symbol.for("PersonController"),
+    PersonStorage: Symbol.for("PersonStorage"),
+    UCPerson: Symbol.for("UCPerson"),
+    PersonFactory: Symbol.for("PersonFactory"),
+    Person: Symbol.for("Person"),
 
+    /**
+     * Flight
+     */
+    FlightController: Symbol.for("FlightController"),
+    FlightStorage: Symbol.for("FlightStorage"),
+    UCFlight: Symbol.for("UCFlight"),
+    FlightFactory: Symbol.for("FlightFactory"),
+    Flight: Symbol.for("Flight"),
+
+    /**
+     * FlightDay
+     */
+    FlightDayController: Symbol.for("FlightDayController"),
+    FlightDayStorage: Symbol.for("FlightDayStorage"),
+    UCFlightDay: Symbol.for("UCFlightDay"),
+    FlightDayFactory: Symbol.for("FlightDayFactory"),
+    FlightDay: Symbol.for("FlightDay"),
 };

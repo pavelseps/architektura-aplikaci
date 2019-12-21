@@ -1,35 +1,67 @@
 import IStorages from "@/lib/Interfaces/IStorages";
-import IUCPlane from "@/lib/Interfaces/IUCPlane";
+import IUCPlane from "@/lib/Interfaces/UseCases/IUCPlane";
 import {inject, injectable} from "inversify";
 import "reflect-metadata";
 import IPlane from "@/lib/Interfaces/IPlane";
 import {TYPES} from "@/lib/injection/types";
-import {IRepository} from "@/lib/Interfaces/IRepository";
 
 @injectable()
 export default class UCPlane implements IUCPlane {
 
     private readonly _planeFactory: () => IPlane;
-    private readonly _planeRepository: IRepository<IPlane>;
 
     constructor(
         @inject(TYPES.PlaneFactory) planeFactory: () => IPlane,
-        @inject(TYPES.PlaneRepository) planeRepository: IRepository<IPlane>
     ) {
 
         this._planeFactory = planeFactory;
-        this._planeRepository = planeRepository;
     }
 
-    addPlane(callsign: string, {planeStorage}: IStorages) {
-        let plane = this._planeFactory();
-        plane.callsign = callsign;
+    add(callsign: string, {planeStorage}: IStorages) {
 
         if (planeStorage !== undefined) {
-            this._planeRepository.storage = planeStorage;
-            this._planeRepository.create(plane);
+            let plane = this._planeFactory();
+            plane.callsign = callsign;
+
+            return planeStorage.create(plane);
         }
 
-        return plane;
+        return null;
+    }
+
+    getAll({planeStorage}: IStorages): IPlane[] {
+
+        if (planeStorage !== undefined) {
+            return planeStorage.getAll();
+        }
+
+        return [];
+    }
+
+    get(id: number, {planeStorage}: IStorages): IPlane | null {
+
+        if (planeStorage !== undefined) {
+            return planeStorage.get(id);
+        }
+
+        return null;
+    }
+
+    update(id: number, callsign: string, {planeStorage}: IStorages): IPlane | null {
+
+        if (planeStorage !== undefined) {
+            let plane = this._planeFactory();
+            plane.callsign = callsign;
+
+            return planeStorage.update(id, plane);
+        }
+
+        return null;
+    }
+
+    remove(id: number, {planeStorage}: IStorages): void {
+        if (planeStorage !== undefined) {
+            planeStorage.remove(id);
+        }
     }
 }

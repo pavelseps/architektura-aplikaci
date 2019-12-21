@@ -22,7 +22,7 @@ export default class PlaneStorage implements IStorage<IPlane> {
     }
 
     create(data: IPlane): IPlane {
-        console.log("Saving to local storage", data);
+        console.log("Saving to local storage plane", data);
         return data;
     }
 }

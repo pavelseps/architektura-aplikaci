@@ -66,11 +66,8 @@
         idSelectedPerson: number | null = null;
 
         created() {
-            let flightDay = FlightDayControllerDI.getFlightDay(this.id);
-            if (flightDay !== null) {
-                this.planes = flightDay.planes; //TODO add olny aviable
-                this.persons = flightDay.persons;  //TODO add olny aviable
-            }
+            this.planes = FlightDayControllerDI.onGroundPlanes(this.id);
+            this.persons = FlightDayControllerDI.onGroundPersons(this.id);
         }
 
         togglePlane(id: number) {

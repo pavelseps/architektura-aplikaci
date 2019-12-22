@@ -62,7 +62,7 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
             id: data.id,
             captain_id: data.captain.id,
             crew_id: data.crew.map(x => x.id),
-            date: data.date.toString(),
+            date: data.date.getTime().toString(),
             plane_id: data.plane.id,
             ready: data.ready,
 
@@ -74,11 +74,11 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
         };
 
         if (data.finishDate !== undefined) {
-            result.finishDate = data.finishDate.toString();
+            result.finishDate = data.finishDate.getTime().toString();
         }
 
         if (data.startDate !== undefined) {
-            result.startDate = data.startDate.toString();
+            result.startDate = data.startDate.getTime().toString();
         }
 
         if (data.towCaptain !== undefined) {
@@ -105,9 +105,9 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
         }
 
         instance.id = data.id;
-        instance.date = new Date(data.date);
-        instance.startDate = data.startDate !== undefined ? new Date(data.startDate) : undefined;
-        instance.finishDate = data.finishDate !== undefined ? new Date(data.finishDate) : undefined;
+        instance.date = new Date(parseInt(data.date));
+        instance.startDate = data.startDate !== undefined ? new Date(parseInt(data.startDate)) : undefined;
+        instance.finishDate = data.finishDate !== undefined ? new Date(parseInt(data.finishDate)) : undefined;
         instance.ready = data.ready;
 
         //TODO remove ts-ignore :(
@@ -119,14 +119,14 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
         // @ts-ignore
         instance.plane = this._planeStorage.get(data.plane_id);
 
-        if (data.towCaptain_id !== undefined){
+        if (data.towCaptain_id !== undefined) {
             let towCaptain = this._personStorage.get(data.towCaptain_id);
             instance.towCaptain = towCaptain === null ? undefined : towCaptain;
         } else {
             instance.towCaptain = undefined;
         }
 
-        if (data.towCrew_id !== undefined){
+        if (data.towCrew_id !== undefined) {
             instance.towCrew = this._personStorage.getAll()
                 // @ts-ignore Fixed with if above
                 .filter(x => data.towCrew_id.includes(x.id));
@@ -134,7 +134,7 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
             instance.towCrew = undefined;
         }
 
-        if (data.towPlane_id !== undefined){
+        if (data.towPlane_id !== undefined) {
             let towPlane = this._planeStorage.get(data.towPlane_id);
             instance.towPlane = towPlane === null ? undefined : towPlane;
         } else {

@@ -50,7 +50,12 @@ export default class FlightDayController implements IFlightDayController{
     }
 
     getFlightsOfDay(id: number): IFlight[] {
-        return this._ucflightDay.getFlights(id, this.storages);
+        let day = this._ucflightDay.get(id, this.storages);
+        if (day === null){
+            return [];
+        }
+
+        return day.flights;
     }
 
     removeFlight(id: number): void {
@@ -81,5 +86,7 @@ export default class FlightDayController implements IFlightDayController{
         return this._ucflightDay.setFlight(id, flight, this.storages);
     }
 
-
+    onGroundPersons(id: number): IPerson[] {
+        return this._ucflightDay.onGroundPersons(id, this.storages);
+    }
 }

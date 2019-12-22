@@ -43,7 +43,7 @@ export default class UCFlight implements IUCFlight {
 
             flight.finishDate = date;
 
-            return flight
+            return flightStorage.update(id, flight)
         }
 
         return null;
@@ -67,7 +67,7 @@ export default class UCFlight implements IUCFlight {
 
             flight.ready = prepared;
 
-            return flight
+            return flightStorage.update(id, flight);
         }
 
         return null;
@@ -91,7 +91,7 @@ export default class UCFlight implements IUCFlight {
             flight.crew = crew;
             flight.plane = plane;
 
-            return flight
+            return flightStorage.update(id, flight)
         }
         return null;
     }
@@ -108,7 +108,7 @@ export default class UCFlight implements IUCFlight {
             flight.towCrew = crew;
             flight.towPlane = plane;
 
-            return flight
+            return flightStorage.update(id, flight)
         }
 
         return null;
@@ -124,7 +124,7 @@ export default class UCFlight implements IUCFlight {
 
             flight.startDate = date;
 
-            return flight
+            return flightStorage.update(id, flight)
         }
 
         return null;

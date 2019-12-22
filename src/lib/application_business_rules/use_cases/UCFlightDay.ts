@@ -47,11 +47,11 @@ export default class UCFlightDay implements IUCFlightDay {
         return [];
     }
 
-    getFlights(id: number, {flightStorage}: IStorages): IFlight[] {
-        if (flightStorage !== undefined) {
-            let flights = flightStorage.getAll();
+    getFlights(id: number, {flightDayStorage}: IStorages): IFlight[] {
+        if (flightDayStorage !== undefined) {
+            let flightsD = flightDayStorage.getAll();
 
-            return flights.filter(x => x.flightDay.id === id);
+            return []; //TODO remove
         }
 
         return [];
@@ -114,9 +114,15 @@ export default class UCFlightDay implements IUCFlightDay {
 
         let idPlanesUsed: number[] = [];
         for (let flight of date.flights) {
-            idPlanesUsed.push(flight.plane.id);
-            if (flight.towPlane !== undefined) {
-                idPlanesUsed.push(flight.towPlane.id);
+
+            if (
+                (flight.ready && flight.startDate === undefined && flight.finishDate === undefined)
+                || (flight.startDate !== undefined && flight.finishDate === undefined)
+            ) {
+                idPlanesUsed.push(flight.plane.id);
+                if (flight.towPlane !== undefined) {
+                    idPlanesUsed.push(flight.towPlane.id);
+                }
             }
         }
 
@@ -142,6 +148,30 @@ export default class UCFlightDay implements IUCFlightDay {
         date.flights.push(flight);
 
         return flightDayStorage.update(id, date);
+    }
+
+    onGroundPersons(id: number, {flightDayStorage}: IStorages): IPerson[] {
+        let date = this.get(id, {flightDayStorage});
+
+        if (date === null) {
+            return [];
+        }
+
+        let idPlanesUsed: number[] = [];
+        for (let flight of date.flights) {
+
+            if (
+                (flight.ready && flight.startDate === undefined && flight.finishDate === undefined)
+                || (flight.startDate !== undefined && flight.finishDate === undefined)
+            ) {
+                idPlanesUsed.push(flight.captain.id);
+                if (flight.towCaptain !== undefined) {
+                    idPlanesUsed.push(flight.towCaptain.id);
+                }
+            }
+        }
+
+        return date.persons.filter(x => !idPlanesUsed.includes(x.id));
     }
 
 }

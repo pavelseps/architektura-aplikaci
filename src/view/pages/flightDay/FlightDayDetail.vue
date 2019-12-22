@@ -48,58 +48,68 @@
                 Nový let
             </template>
             <template v-slot:f-body>
-                <v-subheader inset>Připravená letadla</v-subheader>
+                <v-subheader v-if="preparedFlights.length > 0" inset>Připravená letadla</v-subheader>
                 <template v-for="flight in preparedFlights">
                     <v-divider></v-divider>
                     <v-list-item
                             :key="'prepared-'+flight.id"
                     >
+                        <v-list-item-avatar>
+                            <v-icon>mdi-airplane-takeoff</v-icon>
+                        </v-list-item-avatar>
+
+
                         <v-list-item-content>
                             <v-list-item-title v-text="flight.plane.callsign"></v-list-item-title>
-                            <v-list-item-subtitle v-text="''"></v-list-item-subtitle>
+                            <v-list-item-subtitle v-text="flight.captain.surname"></v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
-                            <v-btn @click.prevent="start(flight.id)">
+                            <v-btn small color="teal accent-4" @click.prevent="start(flight.id)">
+                                <v-icon>mdi-arrow-up</v-icon>
                                 Odstartovat
-                            </v-btn>
-                            <v-btn>
-                                Odebrat
                             </v-btn>
                         </v-list-item-action>
                     </v-list-item>
                 </template>
 
 
-                <v-subheader inset>Letadla ve vzduchu</v-subheader>
+                <v-subheader v-if="inAirFlights.length > 0" inset>Letadla ve vzduchu</v-subheader>
                 <template v-for="flight in inAirFlights">
                     <v-divider></v-divider>
                     <v-list-item
                             :key="'air-'+flight.id"
                     >
+                        <v-list-item-avatar>
+                            <v-icon>mdi-airplane-landing</v-icon>
+                        </v-list-item-avatar>
+
+
                         <v-list-item-content>
                             <v-list-item-title v-text="flight.plane.callsign"></v-list-item-title>
-                            <v-list-item-subtitle v-text="''"></v-list-item-subtitle>
+                            <v-list-item-subtitle v-text="`${flight.captain.surname} - ${getNiceTime(flight.startDate)}`"></v-list-item-subtitle>
                         </v-list-item-content>
 
                         <v-list-item-action>
-                            <v-btn @click.prevent="land(flight.id)">
+                            <v-btn small color="teal accent-4" @click.prevent="land(flight.id)">
+                                <v-icon>mdi-arrow-down</v-icon>
                                 Přistání
-                            </v-btn>
-                            <v-btn>
-                                Odebrat
                             </v-btn>
                         </v-list-item-action>
                     </v-list-item>
                 </template>
 
 
-                <v-subheader inset>Letadla na zemi</v-subheader>
+                <v-subheader v-if="onGroundPlanes.length > 0"  inset>Letadla na zemi</v-subheader>
                 <template v-for="plane in onGroundPlanes">
                     <v-divider></v-divider>
                     <v-list-item
                             :key="'ground-'+plane.id"
                     >
+                        <v-list-item-avatar>
+                            <v-icon>mdi-airport</v-icon>
+                        </v-list-item-avatar>
+
                         <v-list-item-content>
                             <v-list-item-title v-text="plane.callsign"></v-list-item-title>
                             <v-list-item-subtitle v-text="''"></v-list-item-subtitle>
@@ -178,7 +188,11 @@
         }
 
         getNice(date: Date) {
-            return `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`
+            return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+        }
+
+        getNiceTime(date: Date) {
+            return `${date.getHours()}:${date.getMinutes()}`
         }
 
         land(id: number) {

@@ -25,6 +25,8 @@ export default interface IUCFlightDay {
 
     onGroundPlanes(id: number, storage: IStorages): IPlane[]
 
+    onGroundPersons(id: number, storage: IStorages): IPerson[]
+
     inAirFlights(id: number, storage: IStorages): IFlight[]
 
 }

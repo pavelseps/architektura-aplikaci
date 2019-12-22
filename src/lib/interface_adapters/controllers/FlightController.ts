@@ -64,6 +64,6 @@ export default class FlightController implements IFlightController{
     }
 
     startFlight(id: number, date: Date): IFlight | null {
-        return this._ucflight.finish(id, date, this.storages);
+        return this._ucflight.start(id, date, this.storages);
     }
 }

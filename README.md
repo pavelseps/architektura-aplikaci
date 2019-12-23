@@ -1,7 +1,3 @@
-# Instalace
+School project for Application architecture
 
-1) yarn (npm install)
-
-# Příkazy
-
-- yarn (npm) run serve - spuštění web serveru na localhost:8080
+Used ES6, TypeScript, DI (inversify) for Clean architecture app

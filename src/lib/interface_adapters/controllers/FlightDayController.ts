@@ -89,4 +89,9 @@ export default class FlightDayController implements IFlightDayController{
     onGroundPersons(id: number): IPerson[] {
         return this._ucflightDay.onGroundPersons(id, this.storages);
     }
+
+    generateReport(id: number): string[][]{
+
+        return this._ucflightDay.generateReport(id, this.storages);
+    }
 }

@@ -1,15 +1,26 @@
 <template>
     <div>
         <v-container>
-            <v-row>
+            <v-row
+                cols="12"
+                md="3"
+            >
+
                 <v-col md="3" v-for="person in persons">
                     <v-card
-                            class="text-center"
+                            class="d-flex align-center"
                             outlined
+                            height="150"
                             :color="idSelected.includes(person.id) ? 'green lighten-5' : ''"
                             @click.prevent="toggle(person.id)"
                     >
-                        <v-card-title>{{person.name}} {{person.surname}}</v-card-title>
+                        <v-scroll-y-transition>
+                            <div
+                                    class="display-1 flex-grow-1 text-center"
+                            >
+                                {{person.name}} {{person.surname}}
+                            </div>
+                        </v-scroll-y-transition>
                     </v-card>
                 </v-col>
             </v-row>

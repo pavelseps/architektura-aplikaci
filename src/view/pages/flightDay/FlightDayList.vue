@@ -6,7 +6,7 @@
             <template v-slot:f-headline>Letecké dny</template>
             <template v-slot:f-new-btn><v-icon>mdi-plus</v-icon> Nový den</template>
             <template v-slot:f-body>
-                <template v-for="flightDay in flightDays">
+                <template v-for="flightDay in flightDays.reverse()">
                     <v-divider></v-divider>
                     <v-list-item
                             :key="flightDay.id"

@@ -4,24 +4,38 @@
             <v-row>
                 <v-col md="3" v-for="person in persons">
                     <v-card
-                            class="text-center"
+                            class="d-flex align-center"
                             outlined
+                            height="150"
                             :color="idSelectedPerson === person.id ? 'green lighten-5' : ''"
                             @click.prevent="togglePerson(person.id)"
                     >
-                        <v-card-title>{{person.name}} {{person.surname}}</v-card-title>
+                        <v-scroll-y-transition>
+                            <div
+                                    class="display-1 flex-grow-1 text-center"
+                            >
+                                {{person.name}} {{person.surname}}
+                            </div>
+                        </v-scroll-y-transition>
                     </v-card>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col md="3" v-for="plane in planes">
                     <v-card
-                            class="text-center"
+                            class="d-flex align-center"
                             outlined
+                            height="150"
                             :color="idSelectedPlane === plane.id ? 'green lighten-5' : ''"
                             @click.prevent="togglePlane(plane.id)"
                     >
-                        <v-card-title>{{plane.callsign}}</v-card-title>
+                        <v-scroll-y-transition>
+                            <div
+                                    class="display-1 flex-grow-1 text-center"
+                            >
+                                {{plane.callsign}}
+                            </div>
+                        </v-scroll-y-transition>
                     </v-card>
                 </v-col>
             </v-row>

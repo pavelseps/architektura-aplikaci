@@ -29,4 +29,5 @@ export default interface IUCFlightDay {
 
     inAirFlights(id: number, storage: IStorages): IFlight[]
 
+    generateReport(id: number, storage: IStorages): string[][]
 }

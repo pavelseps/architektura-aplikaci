@@ -48,9 +48,13 @@
                 Nový let
             </template>
             <template v-slot:f-body>
-                <v-subheader v-if="preparedFlights.length > 0" inset>Připravená letadla</v-subheader>
+                <template v-if="preparedFlights.length > 0">
+                    <v-divider color="#000000"/>
+                    <v-divider color="#000000"/>
+                    <v-subheader inset>Připravená letadla</v-subheader>
+                </template>
                 <template v-for="flight in preparedFlights">
-                    <v-divider></v-divider>
+                    <v-divider/>
                     <v-list-item
                             :key="'prepared-'+flight.id"
                     >
@@ -60,8 +64,8 @@
 
 
                         <v-list-item-content>
-                            <v-list-item-title v-text="flight.plane.callsign"></v-list-item-title>
-                            <v-list-item-subtitle v-text="flight.captain.surname"></v-list-item-subtitle>
+                            <v-list-item-title v-text="flight.plane.callsign"/>
+                            <v-list-item-subtitle v-text="flight.captain.surname"/>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -74,9 +78,13 @@
                 </template>
 
 
-                <v-subheader v-if="inAirFlights.length > 0" inset>Letadla ve vzduchu</v-subheader>
+                <template v-if="inAirFlights.length > 0">
+                    <v-divider color="#000000"/>
+                    <v-divider color="#000000"/>
+                    <v-subheader inset>Letadla ve vzduchu</v-subheader>
+                </template>
                 <template v-for="flight in inAirFlights">
-                    <v-divider></v-divider>
+                    <v-divider/>
                     <v-list-item
                             :key="'air-'+flight.id"
                     >
@@ -86,8 +94,9 @@
 
 
                         <v-list-item-content>
-                            <v-list-item-title v-text="flight.plane.callsign"></v-list-item-title>
-                            <v-list-item-subtitle v-text="`${flight.captain.surname} - ${getNiceTime(flight.startDate)}`"></v-list-item-subtitle>
+                            <v-list-item-title v-text="flight.plane.callsign"/>
+                            <v-list-item-subtitle
+                                    v-text="`${flight.captain.surname} - ${getNiceTime(flight.startDate)}`"/>
                         </v-list-item-content>
 
                         <v-list-item-action>
@@ -100,9 +109,13 @@
                 </template>
 
 
-                <v-subheader v-if="onGroundPlanes.length > 0"  inset>Letadla na zemi</v-subheader>
+                <template v-if="onGroundPlanes.length > 0">
+                    <v-divider color="#000000"/>
+                    <v-divider color="#000000"/>
+                    <v-subheader inset>Letadla na zemi</v-subheader>
+                </template>
                 <template v-for="plane in onGroundPlanes">
-                    <v-divider></v-divider>
+                    <v-divider/>
                     <v-list-item
                             :key="'ground-'+plane.id"
                     >
@@ -111,8 +124,32 @@
                         </v-list-item-avatar>
 
                         <v-list-item-content>
-                            <v-list-item-title v-text="plane.callsign"></v-list-item-title>
-                            <v-list-item-subtitle v-text="''"></v-list-item-subtitle>
+                            <v-list-item-title v-text="plane.callsign"/>
+                        </v-list-item-content>
+                    </v-list-item>
+                </template>
+
+
+                <template v-if="flightDay.flights.length > 0">
+                    <v-divider color="#000000"/>
+                    <v-divider color="#000000"/>
+                    <v-subheader inset>Celkové lety</v-subheader>
+                </template>
+                <template v-for="flight in flightDay.flights"
+                          v-if="flight.startDate !== undefined && flight.finishDate !== undefined">
+                    <v-divider/>
+                    <v-list-item
+                            :key="'total-flights-'+flight.id"
+                    >
+                        <v-list-item-avatar>
+                            <v-icon>mdi-airplane</v-icon>
+                        </v-list-item-avatar>
+
+                        <v-list-item-content>
+                            <v-list-item-title
+                                    v-text="`${flight.captain.surname} ${flight.captain.name} - total: ${getNiceTimeTotal(flight.finishDate, flight.startDate)}`"/>
+                            <v-list-item-subtitle
+                                    v-text="`${flight.plane.callsign} - start: ${getNiceTime(flight.startDate)}; přistání: ${getNiceTime(flight.finishDate)} `"/>
                         </v-list-item-content>
                     </v-list-item>
                 </template>
@@ -123,7 +160,7 @@
 
 <script lang="ts">
     import Vue from "vue";
-    import {FlightControllerDI, FlightDayControllerDI, PersonControllerDI} from "@/lib/injection/Factory";
+    import {FlightControllerDI, FlightDayControllerDI} from "@/lib/injection/Factory";
     import {Component} from "vue-property-decorator";
     import IFlightDay from "@/lib/interfaces/IFlightDay";
     import List from "@/view/components/List.vue";
@@ -157,7 +194,7 @@
             this.updateData()
         }
 
-        updateData(){
+        updateData() {
             let flightDay = FlightDayControllerDI.getFlightDay(this.id);
             if (flightDay !== null) {
                 this.flightDay = flightDay;
@@ -169,7 +206,19 @@
         }
 
         generateReport() {
-            //TODO generating report
+            if (this.flightDay !== null) {
+                let data = FlightDayControllerDI.generateReport(this.id);
+                let csvContent = "data:text/csv;charset=utf-8,"
+                    + data.map(e => e.join(",")).join("\n");
+
+                let encodedUri = encodeURI(csvContent);
+
+                let link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `smirka-${this.flightDay.date.getDate()}${this.flightDay.date.getMonth() + 1}${this.flightDay.date.getFullYear()}.csv`);
+                document.body.appendChild(link);
+                link.click();
+            }
         }
 
         editPlanes() {
@@ -195,13 +244,24 @@
             return `${date.getHours()}:${date.getMinutes()}`
         }
 
+        getNiceTimeTotal(date1: Date, date2: Date) {
+            let date = new Date(date1.getTime() - date2.getTime());
+            return `${date.getHours() - 1}:${date.getMinutes()}`
+        }
+
         land(id: number) {
-            FlightControllerDI.finishFlight(id, new Date());
+            let date = new Date();
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            FlightControllerDI.finishFlight(id, date);
             this.updateData();
         }
 
         start(id: number) {
-            FlightControllerDI.startFlight(id, new Date());
+            let date = new Date();
+            date.setSeconds(0);
+            date.setMilliseconds(0);
+            FlightControllerDI.startFlight(id, date);
             this.updateData();
         }
     }

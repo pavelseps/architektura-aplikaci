@@ -29,4 +29,6 @@ export default interface IFlightDayController {
     onGroundPersons(id: number): IPerson[]
 
     inAirFlights(id: number): IFlight[]
+
+    generateReport(id: number): string[][]
 }

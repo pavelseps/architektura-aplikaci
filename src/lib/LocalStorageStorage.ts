@@ -57,7 +57,6 @@ export default class LocalStorageStorage<T extends { id: number }> {
 
         if (index > -1) {
             planes[index] = data;
-            console.log("afted edit", index, planes[index], planes);
             localStorage.setItem(this._storageName, JSON.stringify(planes));
         }
 

@@ -81,7 +81,7 @@
                 <template v-if="inAirFlights.length > 0">
                     <v-divider color="#000000"/>
                     <v-divider color="#000000"/>
-                    <v-subheader inset>Letadla ve vzduchu</v-subheader>
+                    <v-subheader  class="display-1">Letadla ve vzduchu</v-subheader>
                 </template>
                 <template v-for="flight in inAirFlights">
                     <v-divider/>
@@ -112,7 +112,7 @@
                 <template v-if="onGroundPlanes.length > 0">
                     <v-divider color="#000000"/>
                     <v-divider color="#000000"/>
-                    <v-subheader inset>Letadla na zemi</v-subheader>
+                    <v-subheader  class="display-1">Letadla na zemi</v-subheader>
                 </template>
                 <template v-for="plane in onGroundPlanes">
                     <v-divider/>
@@ -133,7 +133,7 @@
                 <template v-if="flightDay.flights.length > 0">
                     <v-divider color="#000000"/>
                     <v-divider color="#000000"/>
-                    <v-subheader inset>Celkové lety</v-subheader>
+                    <v-subheader class="display-1">Lety celkem</v-subheader>
                 </template>
                 <template v-for="flight in flightDay.flights"
                           v-if="flight.startDate !== undefined && flight.finishDate !== undefined">
@@ -147,7 +147,7 @@
 
                         <v-list-item-content>
                             <v-list-item-title
-                                    v-text="`${flight.captain.surname} ${flight.captain.name} - total: ${getNiceTimeTotal(flight.finishDate, flight.startDate)}`"/>
+                                    v-text="`${flight.captain.surname} ${flight.captain.name} - celkem: ${getNiceTimeTotal(flight.finishDate, flight.startDate)}`"/>
                             <v-list-item-subtitle
                                     v-text="`${flight.plane.callsign} - start: ${getNiceTime(flight.startDate)}; přistání: ${getNiceTime(flight.finishDate)} `"/>
                         </v-list-item-content>

@@ -49,7 +49,6 @@
         }
 
         save() {
-            //TODO validations
             if (this.plane !== null) {
                 PlaneControllerDI.addPlane(this.plane.callsign);
                 this.back();

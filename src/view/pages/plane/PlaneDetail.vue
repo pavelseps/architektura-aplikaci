@@ -57,7 +57,6 @@
         }
 
         save() {
-            //TODO validations
             if (this.plane !== null) {
                 PlaneControllerDI.updatePlane(this.id, this.plane.callsign);
                 this.back();

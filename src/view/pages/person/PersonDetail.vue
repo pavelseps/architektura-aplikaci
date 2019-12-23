@@ -67,7 +67,6 @@
         }
 
         save() {
-            //TODO validations
             if (this.person !== null) {
                 PersonControllerDI.updatePerson(this.id, this.person.name, this.person.surname, this.person.email);
                 this.back();

@@ -59,7 +59,6 @@
         }
 
         save() {
-            //TODO validations
             if (this.person !== null) {
                 PersonControllerDI.addPerson(this.person.name, this.person.surname, this.person.email);
                 this.back();

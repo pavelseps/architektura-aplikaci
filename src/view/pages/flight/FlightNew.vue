@@ -52,6 +52,7 @@
                     <v-btn
                             color="teal accent-4"
                             @click.prevent="save"
+                            :disabled="!isValid()"
                     >
                         <v-icon>mdi-content-save</v-icon>
                         Uložit
@@ -101,9 +102,12 @@
             });
         }
 
-        save() {
+        isValid(){
+            return this.idSelectedPlane !== null && this.idSelectedPerson !== null;
+        }
 
-            if (this.idSelectedPlane !== null && this.idSelectedPerson){
+        save() {
+            if (this.isValid()){
                 let captain = this.persons.find(x => x.id === this.idSelectedPerson);
                 let plane = this.planes.find(x => x.id === this.idSelectedPlane);
 

@@ -110,7 +110,6 @@ export default class FlightStorage implements IStorage<IFlight, TFlightStorage> 
         instance.finishDate = data.finishDate !== undefined ? new Date(parseInt(data.finishDate)) : undefined;
         instance.ready = data.ready;
 
-        //TODO remove ts-ignore :(
         // @ts-ignore
         instance.captain = this._personStorage.get(data.captain_id);
         instance.crew = this._personStorage.getAll()

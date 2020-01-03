@@ -6,7 +6,7 @@
             <template v-slot:f-headline>Letecké dny</template>
             <template v-slot:f-new-btn><v-icon>mdi-plus</v-icon> Nový den</template>
             <template v-slot:f-body>
-                <template v-for="flightDay in flightDays.reverse()">
+                <template v-for="flightDay in flightDays">
                     <v-divider></v-divider>
                     <v-list-item
                             :key="flightDay.id"
@@ -52,7 +52,7 @@
         }
 
         updateDays(){
-            this.flightDays = FlightDayControllerDI.getAllFlightDays();
+            this.flightDays = FlightDayControllerDI.getAllFlightDays().reverse();
         }
 
         add(){

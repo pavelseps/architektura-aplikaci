@@ -1,0 +1,16 @@
+{
+  "name": "Šmírka",
+  "short_name": "smirka",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#F2F2F2",
+  "theme_color": "#F2F2F2",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/gfx/smirka.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

@@ -71,16 +71,15 @@
         PlaneControllerDI
     } from "@/lib/injection/Factory";
 
-    window.FlightControllerDI = FlightControllerDI;
+    /*window.FlightControllerDI = FlightControllerDI;
     window.FlightDayControllerDI = FlightDayControllerDI;
     window.PersonControllerDI = PersonControllerDI;
-    window.PlaneControllerDI = PlaneControllerDI;
+    window.PlaneControllerDI = PlaneControllerDI;*/
 
     @Component({
         components: {}
     })
     export default class App extends Vue {
-        private it = 0;
         drawer: boolean = true;
 
 

@@ -41,7 +41,7 @@
     "core-js": "^3.4.5",
     "deepmerge": "^4.2.2",
     "fibers": "^4.0.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "sass": "^1.24.0",
     "sass-loader": "^8.0.0",
     "ts-jest": "^24.2.0",
